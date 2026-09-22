@@ -1,6 +1,6 @@
 /**
  * VESPER ARQUITETURA - TCC DASHBOARD ENGINE (app.js)
- * Sincronização direta com a URL oficial do Google Apps Script + Fallback Robusto + ScrollSpy + Personas
+ * Sincronização direta com a URL oficial do Google Apps Script + Fallback Robusto + ScrollSpy + Personas + Menu Retrátil Móvel
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -97,6 +97,7 @@ function renderLoadingGears() {
 function initDashboard() {
   setupTheme();
   setupEventListeners();
+  setupMobileMenu();
   
   // 1. RENDERIZAR IMEDIATAMENTE OS DADOS CONSOLIDADOS
   renderKpis();
@@ -115,7 +116,31 @@ function initDashboard() {
 }
 
 /**
- * 2. SCROLLSPY - O MENU LATERAL ACOMPANHA CONFORME O USUÁRIO ROLA A PÁGINA
+ * 2. MENU RETRÁTIL PARA DISPOSITIVOS MÓVEIS / CELULARES
+ */
+function setupMobileMenu() {
+  const toggleBtn = document.getElementById("mobileMenuToggle");
+  const closeBtn = document.getElementById("mobileCloseBtn");
+  const sidebar = document.querySelector(".sidebar");
+  const overlay = document.getElementById("sidebarOverlay");
+
+  function openMobileSidebar() {
+    if (sidebar) sidebar.classList.add("open");
+    if (overlay) overlay.classList.add("active");
+  }
+
+  function closeMobileSidebar() {
+    if (sidebar) sidebar.classList.remove("open");
+    if (overlay) overlay.classList.remove("active");
+  }
+
+  if (toggleBtn) toggleBtn.addEventListener("click", openMobileSidebar);
+  if (closeBtn) closeBtn.addEventListener("click", closeMobileSidebar);
+  if (overlay) overlay.addEventListener("click", closeMobileSidebar);
+}
+
+/**
+ * 3. SCROLLSPY - O MENU LATERAL ACOMPANHA CONFORME O USUÁRIO ROLA A PÁGINA
  */
 function setupScrollSpy() {
   const navLinks = document.querySelectorAll(".nav-item");
@@ -252,6 +277,14 @@ function renderSidebarNav() {
 
       if (targetEl) {
         targetEl.scrollIntoView({ behavior: "smooth" });
+      }
+
+      // Fechar menu retrátil se estiver no celular
+      if (window.innerWidth <= 992) {
+        const sidebar = document.querySelector(".sidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+        if (sidebar) sidebar.classList.remove("open");
+        if (overlay) overlay.classList.remove("active");
       }
     });
   });

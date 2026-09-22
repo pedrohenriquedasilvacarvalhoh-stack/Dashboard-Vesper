@@ -75,6 +75,7 @@ body {
   min-height: 100vh;
   transition: background-color 0.35s ease, color 0.35s ease;
   overflow-x: hidden;
+  width: 100vw;
 }
 
 /* ==========================================================================
@@ -202,7 +203,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(11, 29, 58, 0.75);
+  background-color: rgba(11, 29, 58, 0.8);
   backdrop-filter: blur(4px);
   z-index: 95;
   opacity: 0;
@@ -383,6 +384,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  min-width: 0;
 }
 
 .mobile-menu-toggle {
@@ -395,6 +397,7 @@ body {
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
 .mobile-menu-toggle:hover {
@@ -406,6 +409,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 }
 
 .topbar-title-area h2 {
@@ -426,6 +430,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  flex-shrink: 0;
 }
 
 .badge-live {
@@ -439,6 +444,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  white-space: nowrap;
 }
 
 .badge-live::before {
@@ -470,6 +476,7 @@ body {
   border: 1px solid transparent;
   cursor: pointer;
   transition: var(--transition);
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -570,7 +577,7 @@ body {
    ========================================================================== */
 .section-wrapper {
   margin-bottom: 3.5rem;
-  scroll-margin-top: 100px;
+  scroll-margin-top: 90px;
 }
 
 .section-header-banner {
@@ -930,48 +937,162 @@ body {
 }
 
 /* ==========================================================================
-   RESPONSIVIDADE MÓVEL / MENU RETRÁTIL
+   RESPONSIVIDADE MÓVEL EXTREMA (SMARTPHONES & TABLETS <= 768px)
    ========================================================================== */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .main-wrapper {
+    margin-left: 0;
+    width: 100vw;
+  }
+
+  /* TOPBAR ADAPTATIVA NO CELULAR */
+  .topbar {
+    height: 64px;
+    padding: 0 0.85rem;
+  }
+
+  .topbar-left-wrapper {
+    gap: 0.5rem;
+  }
+
   .mobile-menu-toggle {
     display: inline-flex;
+    padding: 0.45rem 0.65rem;
+    font-size: 1.1rem;
   }
 
   .mobile-close-btn {
     display: block;
   }
 
+  .topbar-title-area h2 {
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 170px;
+    letter-spacing: 0px;
+  }
+
+  .topbar-subtitle {
+    display: none !important;
+  }
+
+  .desktop-only-badge {
+    display: none !important;
+  }
+
+  .topbar-right-area {
+    gap: 0.4rem;
+  }
+
+  .btn-text-desktop {
+    display: none !important;
+  }
+
+  .btn-compact {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-icon-only {
+    padding: 0.45rem 0.65rem;
+  }
+
+  /* SIDEBAR EM DRAWER NO CELULAR */
   .sidebar {
     transform: translateX(-100%);
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+    width: 280px;
   }
 
   .sidebar.open {
     transform: translateX(0);
   }
 
-  .main-wrapper {
-    margin-left: 0;
+  /* CORPO PRINCIPAL E KPIS */
+  .content-body {
+    padding: 1.25rem 0.85rem;
   }
 
-  .topbar {
-    padding: 0 1rem;
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
   }
 
-  .topbar-title-area h2 {
-    font-size: 1rem;
+  .kpi-card {
+    padding: 0.85rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
   }
 
-  .topbar-subtitle {
-    display: none;
+  .kpi-info span {
+    font-size: 0.72rem;
   }
 
-  .badge-live {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.6rem;
+  .kpi-info h3 {
+    font-size: 1.45rem;
+  }
+
+  .kpi-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.05rem;
+    align-self: flex-end;
+    margin-top: -2.1rem;
+  }
+
+  /* SEÇÕES E GRÁFICOS */
+  .section-wrapper {
+    margin-bottom: 2.25rem;
+    scroll-margin-top: 75px;
+  }
+
+  .section-header-banner {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .section-header-banner h2 {
+    font-size: 1.15rem;
   }
 
   .charts-grid, .persona-cards-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .chart-card {
+    padding: 1rem;
+  }
+
+  .chart-card-header h3 {
+    font-size: 0.95rem;
+  }
+
+  .chart-container {
+    height: 240px;
+  }
+
+  .gear-container {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-title-area h2 {
+    max-width: 130px;
+    font-size: 0.88rem;
   }
 }

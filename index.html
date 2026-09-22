@@ -66,30 +66,31 @@
   <!-- ÁREA PRINCIPAL -->
   <div class="main-wrapper">
     
-    <!-- TOPBAR SUPERIOR -->
+    <!-- TOPBAR SUPERIOR ADAPTATIVA -->
     <header class="topbar">
       <div class="topbar-left-wrapper">
-        <!-- BOTÃO HAMBÚRGUER DO MENU RETRÁTIL PARA CELULARES -->
+        <!-- BOTÃO HAMBÚRGUER DO MENU RETRÁTIL -->
         <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir Menu Lateral">
           <i class="fas fa-bars"></i>
         </button>
 
         <div class="topbar-title-area">
-          <h2>Dashboard Analítica de Pesquisa</h2>
+          <h2>VESPER TCC ANALYTICS</h2>
           <span class="topbar-subtitle">Pesquisa de Mercado & Viabilidade de Negócio (TCC)</span>
         </div>
       </div>
 
       <div class="topbar-right-area">
-        <span class="badge-live" id="liveBadge">108 Respostas Processadas</span>
+        <span class="badge-live desktop-only-badge" id="liveBadge">108 Respostas Processadas</span>
 
         <div class="topbar-actions">
-          <button class="btn btn-outline" id="themeToggleBtn" aria-label="Alternar Tema Claro / Escuro">
+          <button class="btn btn-outline btn-icon-only" id="themeToggleBtn" aria-label="Alternar Tema Claro / Escuro">
             <i class="fas fa-moon"></i>
           </button>
 
-          <button class="btn btn-gold" id="openAppsScriptModal">
-            <i class="fab fa-google-drive"></i> Conectar Google Sheets
+          <button class="btn btn-gold btn-compact" id="openAppsScriptModal" aria-label="Conectar Google Sheets">
+            <i class="fab fa-google-drive"></i>
+            <span class="btn-text-desktop">Conectar Google Sheets</span>
           </button>
         </div>
       </div>
